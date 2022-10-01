@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class index extends Component {
+export default class Component extends Component {
   render() {
     return (
       <div>index</div>
