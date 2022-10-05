@@ -1,4 +1,3 @@
-import Component from './Components';
 import TugasPortofolio from './Tugas-Portofolio';
 
 function App() {
