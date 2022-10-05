@@ -1,10 +1,11 @@
-import './App.css';
 import Component from './Components';
+import TugasPortofolio from './Tugas-Portofolio';
 
 function App() {
   return (
-    <div className="App">
-      <Component/>
+    <div>
+      {/* <Component/> */}
+      <TugasPortofolio/>
     </div>
   );
 }
