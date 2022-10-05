@@ -14,10 +14,10 @@ class Footer extends React.Component {
           <div className="container">
             <h5 className="fw-bold text-secondary">Social Media</h5>
             <div className="d-flex flex-column">
-              <a className="text-black-50 fs-6">Linked</a>
-              <a className="text-black-50 fs-6">Github</a>
-              <a className="text-black-50 fs-6">Instagram</a>
-              <a className="text-black-50 fs-6">Twitter</a>
+              <a className="text-black-50 fs-6" href="https://id.linkedin.com/">Linked</a>
+              <a className="text-black-50 fs-6" href="https://github.com/">Github</a>
+              <a className="text-black-50 fs-6" href="https://www.instagram.com/">Instagram</a>
+              <a className="text-black-50 fs-6" href="https://twitter.com/">Twitter</a>
             </div>
           </div>
         </div>
