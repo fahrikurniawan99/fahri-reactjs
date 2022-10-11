@@ -1,10 +1,11 @@
-import TugasPortofolio from './Tugas-Portofolio';
+import FormRegistrasi from './Tugas-FormRegistrasi/FormRegistrasi';
 
 function App() {
   return (
     <div>
       {/* <Component/> */}
-      <TugasPortofolio/>
+      {/* <TugasPortofolio/> */}
+      <FormRegistrasi />
     </div>
   );
 }
