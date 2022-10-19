@@ -1,11 +1,11 @@
-import FormRegistrasi from './Tugas-FormRegistrasi/FormRegistrasi';
+import PortalBerita from './Tugas-PortalBerita';
 
 function App() {
   return (
     <div>
       {/* <Component/> */}
       {/* <TugasPortofolio/> */}
-      <FormRegistrasi />
+      <PortalBerita />
     </div>
   );
 }
