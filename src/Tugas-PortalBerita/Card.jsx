@@ -10,6 +10,7 @@ export default class Card extends React.Component {
           style={{ objectFit: "cover" }}
           width={100}
           height={200}
+          alt='imageNews'
         />
         <div className='card-body'>
           <h5 className='card-title'>{this.props.title}</h5>
