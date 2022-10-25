@@ -1,107 +1,92 @@
-import React, { Component } from "react";
-import { Col, Row, Spinner } from "react-bootstrap";
-import CardNews from "./CardNews";
-import Navigation from "./Navigation";
-import Search from "./Search";
 import axios from "axios";
+import React from "react";
+import Card from "./Card";
+import Navbar from "./Navbar";
+import Search from "./Search";
 
-export default class PortalBerita extends Component {
+class PortalBerita extends React.Component {
   state = {
-    news: "",
+    news: [],
+    totalResults: "",
     isLoading: false,
-    errorMessage: "",
   };
 
-  getTrendingNews = async () => {
+  getNews = async (url) => {
     try {
-      this.setState({
-        isLoading: true,
-      });
-      if (this.state.errorMessage) {
-        this.setState({
-          errorMessage: "",
-        });
-      }
-      const { data } = await axios(
-        "https://newsapi.org/v2/top-headlines?country=id&apiKey=630ae0f6a29f463393f7762eca548831"
-      );
-      this.setState({
-        isLoading: false,
-        news: data.articles,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+      this.setState({ isLoading: true });
 
-  getSearchNews = async (keyword) => {
-    try {
-      this.setState({
-        isLoading: true,
-        news: "",
-      });
-      const { data } = await axios(
-        `https://newsapi.org/v2/everything?q=${keyword}&from=2022-10-17&sortBy=popularity&apiKey=630ae0f6a29f463393f7762eca548831`
-      );
-      if (data.articles.length !== 0) {
+      const { data } = await axios(url);
+      const news = data.articles;
+      const totalResults = data.totalResults;
+
+      if (totalResults > 0) {
         this.setState({
-          isLoading: false,
-          news: data.articles,
+          news,
+          totalResults,
         });
       } else {
         this.setState({
-          isLoading: false,
-          errorMessage: "Hasil tidak di temukan",
+          news: [],
+          totalResults,
         });
       }
+      this.setState({ isLoading: false });
     } catch (error) {
       console.log(error);
+      this.setState({ isLoading: false });
     }
   };
 
   componentDidMount() {
-    this.getTrendingNews();
+    const URL_TRENDING_NEWS = `https://newsapi.org/v2/top-headlines?country=id&apiKey=630ae0f6a29f463393f7762eca548831`;
+    this.getNews(URL_TRENDING_NEWS);
   }
+
   render() {
+    const { news, isLoading, totalResults } = this.state;
     return (
       <div>
-        <Navigation />
-        <div className='container my-5'>
-          <Search
-            searchNews={this.getSearchNews}
-            getNews={this.getTrendingNews}
-          />
-          <div className='mt-4'>
-            {this.state.isLoading ? (
-              <div className='text-center'>
-                <Spinner animation='grow' variant='success' />
-              </div>
-            ) : (
-              <>
-                {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
-                <Row lg={3} md={2} xs={1} className='g-3'>
-                  {this.state.news &&
-                    this.state.news.map((news) => {
-                      const {urlToImage, title, description, source, publishedAt} = news
-                      const time = new Date(publishedAt).toLocaleDateString();
+        <header>
+          <Navbar />
+        </header>
+        <div className='container mt-5'>
+          <Search getNews={this.getNews} />
+          <p className='mt-3 text-secondary'>Total results {totalResults}</p>
+          <article>
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto g-4 '>
+              {isLoading === false ? (
+                <>
+                  {news &&
+                    news.map((news) => {
+                      const date = new Date(
+                        news.publishedAt
+                      ).toLocaleDateString();
+                      const key = Math.random();
                       return (
-                        <Col key={Math.random()}>
-                          <CardNews
-                            img={urlToImage}
-                            title={title}
-                            desc={description}
-                            name={source.name}
-                            time={time}
+                        <div className='col' key={key}>
+                          <Card
+                            title={news.title}
+                            content={news.content}
+                            date={date}
+                            image={news.urlToImage}
+                            source={news.source.name}
                           />
-                        </Col>
+                        </div>
                       );
                     })}
-                </Row>
-              </>
-            )}
-          </div>
+                </>
+              ) : (
+                <div className='w-100 text-center'>
+                  <div className='spinner-border text-warning' role='status'>
+                    <span className='visually-hidden'>Loading...</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </article>
         </div>
       </div>
     );
   }
 }
+export default PortalBerita;
