@@ -25,8 +25,8 @@ const SearchNews = ({ handleGet, getTrendingNews }) => {
     }
   };
   return (
-    <div className='d-flex gap-3 my-4 w-100'>
-      <form {...{ onSubmit }}>
+    <form {...{ onSubmit }}>
+      <div className='d-flex gap-3 my-4 w-100'>
         <input
           value={keyword}
           type='text'
@@ -36,8 +36,8 @@ const SearchNews = ({ handleGet, getTrendingNews }) => {
         <button type='submit' className='btn btn-outline-primary'>
           Search
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

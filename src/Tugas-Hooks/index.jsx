@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import Card from "./Card";
+import Navbar from "./Navbar";
 import SearchNews from "./SearchNews";
 
 const TugasHooks = () => {
@@ -32,40 +33,43 @@ const TugasHooks = () => {
   }, [getTrendingNews]);
 
   return (
-    <div className='container'>
-      <SearchNews
-        handleGet={(url) => get(url)}
-        getTrendingNews={() => getTrendingNews()}
-      />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          {news.totalResults > 0 ? (
-            <p>{news.totalResults} Berita Di temukan</p>
-          ) : (
-            <p>Tidak ada hasil ...</p>
-          )}
-          <div className='row row-cols-2'>
-            {news.articles?.map((article) => {
-              const { title, content, urlToImage, source, publishedAt } =
-                article;
-              const date = new Date(publishedAt).toLocaleDateString();
-              return (
-                <div className='col' key={Math.random()}>
-                  <Card
-                    title={title}
-                    content={content}
-                    image={urlToImage}
-                    source={source.name}
-                    date={date}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
+    <div>
+      <Navbar />
+      <div className='container'>
+        <SearchNews
+          handleGet={(url) => get(url)}
+          getTrendingNews={() => getTrendingNews()}
+        />
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            {news.totalResults > 0 ? (
+              <p>{news.totalResults} Berita Di temukan</p>
+            ) : (
+              <p>Tidak ada hasil ...</p>
+            )}
+            <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'>
+              {news.articles?.map((article) => {
+                const { title, content, urlToImage, source, publishedAt } =
+                  article;
+                const date = new Date(publishedAt).toLocaleDateString();
+                return (
+                  <div className='col' key={Math.random()}>
+                    <Card
+                      title={title}
+                      content={content}
+                      image={urlToImage}
+                      source={source.name}
+                      date={date}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
