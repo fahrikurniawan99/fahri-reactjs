@@ -1,11 +1,12 @@
-import PortalBerita from './Tugas-PortalBerita';
+import TugasHooks from "./Tugas-Hooks";
 
 function App() {
   return (
     <div>
       {/* <Component/> */}
       {/* <TugasPortofolio/> */}
-      <PortalBerita />
+      {/* <PortalBerita /> */}
+      <TugasHooks />
     </div>
   );
 }
