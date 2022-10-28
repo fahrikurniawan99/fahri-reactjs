@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import Redux from "./Tugas-Redux/Redux";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       {/* <TugasPortofolio/> */}
       {/* <PortalBerita /> */}
       {/* <TugasHooks /> */}
-      <div className='py-3'>
+      {/* <div className='py-3'>
         <Link to='home' className='btn btn-outline-primary'>
           Home
         </Link>
@@ -22,7 +22,8 @@ function App() {
         <div className='vh-100 hstack'>
         <Outlet />
         </div>
-      </div>
+      </div> */}
+      <Redux />
     </div>
   );
 }
