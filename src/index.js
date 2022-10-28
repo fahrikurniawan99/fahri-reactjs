@@ -5,10 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Detail from "./TugasReactRouter/Detail";
-import About from './TugasReactRouter/About';
-import Home from "./TugasReactRouter/Home";
-import Product from "./TugasReactRouter/Product";
+import { About, Detail, Home, Product } from "./TugasReactRouter";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
