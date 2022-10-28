@@ -1,19 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import About from "./TugasReactRouter/About";
-import Detail from "./TugasReactRouter/Detail";
-import Home from "./TugasReactRouter/Home";
-import Product from "./TugasReactRouter/Product";
+import { Hello } from "./Test";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    {/* <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
           <Route path='home' element={<Home />} />
@@ -22,7 +17,8 @@ root.render(
           <Route path='about' element={<About />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
+    <Hello />
   </React.StrictMode>
 );
 
