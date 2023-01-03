@@ -1,4 +1,5 @@
-import Redux from "./Tugas-Redux/Redux";
+// import Redux from "./Tugas-Redux/Redux";
+import FormRegistrasi from "./Tugas-FormRegistrasi/FormRegistrasi";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       {/* <TugasPortofolio/> */}
       {/* <PortalBerita /> */}
       {/* <TugasHooks /> */}
+      <FormRegistrasi />
       {/* <div className='py-3'>
         <Link to='home' className='btn btn-outline-primary'>
           Home
@@ -23,7 +25,7 @@ function App() {
         <Outlet />
         </div>
       </div> */}
-      <Redux />
+      {/* <Redux /> */}
     </div>
   );
 }
